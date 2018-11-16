@@ -55,20 +55,26 @@
                     url:'',
                 },
                 html = '<div class="dialogRight"> <div class="dialogMask"></div> <div class="dialogContent animate fadeInRight" style="height:1000px;"></div> </div>',
-                $dialogRight = $('.dialogRight');
+                $dialogRight =$('.dialogRight');
             var settings = $.extend({},defaults,opt);
+
             if($dialogRight.length>0){$dialogRight.remove()}else{
                 $('body').append(html)
             }
-            $dialogRight.on('click',function(){
-               console.log(1)
-               close()
-           })
+            var $dialogMask = $('.dialogMask');
+            $dialogMask.on('click',function(){
+                $.DialogRight.close()
+                console.log(1)
+            })
+
         },
         close:function(){
-            var $dialogRight = $('.dialogRight');
-            $dialogRight.remove();
-            console.log('a')
+            var $dialogRight = $('.dialogRight'),
+                $dialogCon  = $dialogRight.find('.dialogContent');
+            $dialogCon.get(0).className = $dialogCon.get(0).className.replace(/fadeInRight/,'fadeOutRight')
+            setTimeout(function(){
+                $dialogRight.remove();
+            },400)
         }
     }
 })(jQuery,window,document)
