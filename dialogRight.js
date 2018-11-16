@@ -18,53 +18,69 @@
      $(html).append('body')
      }
      }
-
      }
      $.fn.DialogRight = function(opt){
      var dialogRight = new DialogRight(opt)
      return dialogRight.init()
      }*/
-/*    $.extend({
-        DialogRight:function(opt){
-            var defaults = {
-                    width:600,
-                    height:'100%',
-                    title:'hello word',
-                    content:'内容区',
-                    url:'',
-                },
-                html = '<div class="dialogRight"> <div class="dialogMask"></div> <div class="dialogContent animate fadeInRight" style="height:1000px;"></div> </div>',
-                $dialogRight = $('.dialogRight');
-            var settings = $.extend({},defaults,opt);
-            if($dialogRight.length>0){$dialogRight.remove()}else{
-                $('body').append(html)
-            }
-            $(document).on('click',function(){
-                $dialogRight.remove();
-                console.log(1)
-            })
-        }
-    })*/
+    /*    $.extend({
+     DialogRight:function(opt){
+     var defaults = {
+     width:600,
+     height:'100%',
+     title:'hello word',
+     content:'内容区',
+     url:'',
+     },
+     html = '<div class="dialogRight"> <div class="dialogMask"></div> <div class="dialogContent animate fadeInRight" style="height:1000px;"></div> </div>',
+     $dialogRight = $('.dialogRight');
+     var settings = $.extend({},defaults,opt);
+     if($dialogRight.length>0){$dialogRight.remove()}else{
+     $('body').append(html)
+     }
+     $(document).on('click',function(){
+     $dialogRight.remove();
+     console.log(1)
+     })
+     }
+     })*/
     $.DialogRight={
         init:function(opt){
             var defaults = {
-                    width:600,
-                    height:'100%',
                     title:'hello word',
-                    content:'内容区',
-                    url:'',
+                    content:'',
+                    url:'https://baidu.com',
+                    btns:[]
                 },
-                html = '<div class="dialogRight"> <div class="dialogMask"></div> <div class="dialogContent animate fadeInRight" style="height:1000px;"></div> </div>',
+                html = '<div class="dialogRight"> <div class="dialogMask"></div> <div class="dialogContent animate fadeInRight"><div class="dialogTitle"></div><div class="dialogCon"></div><div class="dialogFooter"><input class="dialog-cancel" type="button" value="" /><input class="dialog-commit" type="button" value=""/></div></div></div> </div>',
                 $dialogRight =$('.dialogRight');
             var settings = $.extend({},defaults,opt);
-
             if($dialogRight.length>0){$dialogRight.remove()}else{
                 $('body').append(html)
+                var $dialogTitle=$('.dialogTitle'),
+                    $dialogContent=$('.dialogContent'),
+                    $dialogCon = $('.dialogCon');
+                $dialogTitle.html(settings.title)
+                if(settings.content){
+                    $dialogCon.html(settings.content)
+                }
+                else if(settings.url){
+                    var ifr = '<iframe name="ifrcon" frameborder="0" id="ifrcon" src='+settings.url+'></iframe>'
+                    $dialogCon.append($(ifr))
+                }
+                if(settings.btns){
+                    $dialogContent.find('input').css({'display':'inline-block'})
+                    if(settings.btns[0]!=''){
+
+                    }
+                }else{
+                    $dialogContent.find('input').css({'display':'none'})
+
+                }
             }
             var $dialogMask = $('.dialogMask');
             $dialogMask.on('click',function(){
                 $.DialogRight.close()
-                console.log(1)
             })
 
         },
@@ -78,11 +94,3 @@
         }
     }
 })(jQuery,window,document)
-/*
- var DialogRight = {
- var default = {
-
- }
- var settings = $.extend({},)
- }*/
-$.fn  ===jQuery.prototype
