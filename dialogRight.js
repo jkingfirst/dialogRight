@@ -1,4 +1,4 @@
-;(function($,window,document,undefinded){
+;(function($,window,document,undefined){
     $.DialogRight={
         init:function(opt){
             var defaults = {
